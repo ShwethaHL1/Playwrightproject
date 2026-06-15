@@ -6,7 +6,7 @@ export class TestPage {
   readonly passwordInput: Locator;
   readonly signInButton: Locator;
   readonly errorMessage: Locator;
-
+ 
   constructor(page: Page) {
     this.page = page;
     this.userEmailInput = page.getByPlaceholder('you@email.com');

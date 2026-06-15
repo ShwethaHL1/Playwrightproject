@@ -10,6 +10,7 @@ Given('I open the login page', async function (this: CustomWorld) {
 
 Then('the page title should contain {string}', async function (this: CustomWorld, text: string) {
   await expect(this.page).toHaveTitle(new RegExp(text, 'i'));
+  await this.page.waitForTimeout(5000);
   });
 
 Given('user login into the app', async function (this: CustomWorld) {

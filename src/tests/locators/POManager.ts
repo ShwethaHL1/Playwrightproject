@@ -11,6 +11,6 @@ export class PageManager {
         if (!this._testPage) {
             this._testPage = new TestPage(this.page);
         }
-        return this._testPage;
+        return  this._testPage;
     }
 }
