@@ -4,7 +4,8 @@ import { CustomWorld } from './world';
 import { PageManager } from '../locators/POManager';
 
 Before(async function (this: CustomWorld) {
-  this.browser = await chromium.launch({ headless: true });
+  const headless = process.env.CI === 'true';
+  this.browser = await chromium.launch({ headless });
   this.context = await this.browser.newContext();
   this.page = await this.context.newPage();
   this.pageLocator = new PageManager(this.page);
