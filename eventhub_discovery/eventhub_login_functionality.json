@@ -1,0 +1,143 @@
+{
+  "id": "auth_login",
+  "name": "User Login",
+  "type": "authentication",
+  "category": "Authentication",
+  "description": "User authentication flow for EventHub",
+  "preconditions": [
+    "User is on login page"
+  ],
+  "steps": [
+    {
+      "action": "Navigate to login page",
+      "element": null,
+      "expectedOutcome": "Login form is displayed with email and password fields"
+    },
+    {
+      "action": "Enter valid email",
+      "element": "email_input",
+      "expectedOutcome": "Email appears in email field"
+    },
+    {
+      "action": "Enter valid password",
+      "element": "password_input",
+      "expectedOutcome": "Password field shows masked input"
+    },
+    {
+      "action": "Click Sign In button",
+      "element": "signin_button",
+      "expectedOutcome": "User is redirected to dashboard/events page"
+    }
+  ],
+  "expectedOutcome": "User successfully logged in",
+  "errorScenarios": [
+    {
+      "scenario": "Invalid email format",
+      "trigger": "User enters invalid email (e.g., 'notanemail')",
+      "expectedError": "Validation error message appears"
+    },
+    {
+      "scenario": "Empty email field",
+      "trigger": "User tries to login with empty email",
+      "expectedError": "Validation error: \"Email is required\""
+    },
+    {
+      "scenario": "Empty password field",
+      "trigger": "User tries to login with empty password",
+      "expectedError": "Validation error: \"Password is required\""
+    },
+    {
+      "scenario": "Incorrect password",
+      "trigger": "User enters wrong password",
+      "expectedError": "Error message: \"Invalid credentials\" or similar"
+    }
+  ],
+  "testDataExamples": {
+    "validEmail": "manish123@gmail.com",
+    "validPassword": "Manish9@@",
+    "invalidEmail": "invalidemail@",
+    "invalidPassword": "WrongPassword123"
+  },
+  "elements": [
+    {
+      "id": "email_input",
+      "name": "Email Input",
+      "type": "input",
+      "action": "fill",
+      "locators": [
+        {
+          "strategy": "CSS",
+          "value": "input[type=\"email\"]",
+          "stability": 2,
+          "description": "Email input field"
+        },
+        {
+          "strategy": "role",
+          "value": "getByRole('textbox', {name: /email/i})",
+          "stability": 1,
+          "description": "Role-based"
+        },
+        {
+          "strategy": "xpath",
+          "value": "//input[@type='email']",
+          "stability": 2,
+          "description": "XPath by type"
+        }
+      ]
+    },
+    {
+      "id": "password_input",
+      "name": "Password Input",
+      "type": "input",
+      "action": "fill",
+      "locators": [
+        {
+          "strategy": "CSS",
+          "value": "input[type=\"password\"]",
+          "stability": 2,
+          "description": "Password input field"
+        },
+        {
+          "strategy": "CSS",
+          "value": "input[type='password']",
+          "stability": 2,
+          "description": "Type-based selector"
+        },
+        {
+          "strategy": "xpath",
+          "value": "//input[@type='password']",
+          "stability": 3,
+          "description": "XPath by type"
+        }
+      ]
+    },
+    {
+      "id": "signin_button",
+      "name": "Sign In Button",
+      "type": "button",
+      "action": "click",
+      "locators": [
+        {
+          "strategy": "text",
+          "value": "button:has-text(\"Sign In\")",
+          "stability": 2,
+          "description": "Sign In button"
+        },
+        {
+          "strategy": "xpath",
+          "value": "//button[contains(text(), 'Sign In')] | //button[contains(text(), 'Login')]",
+          "stability": 3,
+          "description": "XPath with text"
+        },
+        {
+          "strategy": "role",
+          "value": "getByRole('button', {name: /sign in|login/i})",
+          "stability": 1,
+          "description": "Role-based"
+        }
+      ]
+    }
+  ],
+  "discoveryStatus": "completed",
+  "timestamp": "2026-06-24T05:38:45.250Z"
+}
